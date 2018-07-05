@@ -11,7 +11,7 @@ exports.create = (text, callback) => {
   var id = counter.getNextUniqueId();
   //items[id] = text;
   //callback(null, {id: id, text: text});
-  fs.writeFile(id, text, (err) => {
+  fs.writeFile(`./dataDir/${id}`, text, (err) => {
     if (err) { throw err; } 
     console.log('The file has been saved!');
   });
