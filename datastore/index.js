@@ -11,14 +11,19 @@ exports.create = (text, callback) => {
   var id = counter.getNextUniqueId();
   //items[id] = text;
   //callback(null, {id: id, text: text});
-  fs.writeFile(`./dataDir/${id}`, text, (err) => {
-    if (err) { throw err; } 
-    console.log('The file has been saved!');
+  fs.writeFile(`./dataDir/${id}`, text, function(err) {
+    if (err) { 
+      callback(err); 
+    } else {
+      console.log('The file has been saved with the id of ' + id);
+      callback(null, {id, text}); //Which callback is being applied here; it seems to be addTodo which only takes one arg
+    }
   });
 };
 
 exports.readOne = (id, callback) => {
-  var item = items[id];
+  // var item = items[id];
+  var item = data[data.indexOf(id)];
   if (!item) {
     callback(new Error(`No item with id: ${id}`));
   } else {
