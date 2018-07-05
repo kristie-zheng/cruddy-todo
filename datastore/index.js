@@ -28,10 +28,18 @@ exports.readOne = (id, callback) => {
 
 exports.readAll = (callback) => {
   var data = [];
-  _.each(items, (item, idx) => {
-    data.push({ id: idx, text: items[idx] });
+  // _.each(items, (item, idx) => {
+  //   data.push({ id: idx, text: items[idx] });
+  // });f
+  console.log('executes here');
+  fs.readdir('./dataDir/', function(err, files) {
+    if (err) { 
+      throw error; 
+    } else {
+      data = files.slice();
+      console.log('here is data array', JSON.stringify(data));
+    }
   });
-  callback(null, data);
 };
 
 exports.update = (id, text, callback) => {
