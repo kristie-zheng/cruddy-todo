@@ -12,9 +12,9 @@ exports.create = (text, callback) => {
   //items[id] = text;
   //callback(null, {id: id, text: text});
   fs.writeFile(id, text, (err) => {
-  if (err) throw err;
-  console.log('The file has been saved!');
-});
+    if (err) { throw err; } 
+    console.log('The file has been saved!');
+  });
 };
 
 exports.readOne = (id, callback) => {
@@ -47,9 +47,9 @@ exports.update = (id, text, callback) => {
 exports.delete = (id, callback) => {
   var item = items[id];
   delete items[id];
-  if(!item) {
+  if (!item) {
     // report an error if item not found
-    callback(new Error(`No item with id: ${id}`))
+    callback(new Error(`No item with id: ${id}`));
   } else {
     callback();
   }

@@ -43,14 +43,13 @@ exports.getNextUniqueId = () => {
     //argument[0] is null
     //argument[1] is retrievedNumber
     var currentCount = arguments[1]; //the 1st argument of readCounter is the currentCount
-    counter = currentCount + 1; //set counter to be currentcount
+    currentCount++; //increment the currentCount so we can write it back to the file
+    counter = currentCount;
     console.log('the counter is now', counter);
     writeCounter(counter, function() { //update the counter variable
       console.log('heres the counter', arguments[1]);
     });
   });
-  counter = counter + 1;
-  // console.log(counter)
   return zeroPaddedNumber(counter);
 
 };
