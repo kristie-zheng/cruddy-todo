@@ -39,27 +39,13 @@ const writeCounter = (count, callback) => {
 // Public API - Fix this function //////////////////////////////////////////////
 
 exports.getNextUniqueId = () => {
-  // readCounter(function() {
-  //   //argument[0] is null
-  //   //argument[1] is retrievedNumber
-  //   var currentCount = arguments[1]; //the 1st argument of readCounter is the currentCount
-  //   currentCount++; //increment the currentCount so we can write it back to the file
-  //   counter = currentCount;
-  //   console.log('the counter is now', counter);
-  //   writeCounter(counter, function() { //update the counter variable
-  //     console.log('heres the counter', arguments[1]);
-  //   });
-  // });
-  // return zeroPaddedNumber(counter);
-
-  readCounter(function(error, data) {
-    //argument[0] is null
-    //argument[1] is retrievedNumber
-    var currentCount = data; //the callback receives two args: callback(null, Number(fileData));
+  readCounter(function(error, currentCount) {
+    //argument[0] represents the first arg of the callback in readCounter
+    //argument[1] represents the second arg of the callback in readCounter
     currentCount++; //increment the currentCount so we can write it back to the file
     counter = currentCount;
     console.log('the counter is now', counter);
-    writeCounter(counter, function(error, counterString) { //update the counter variable; the callback is: callback(null, counterString);
+    writeCounter(counter, function(error, counterString) { //update the counter variable
       console.log('heres the counter', counterString);
     });
   });
