@@ -38,7 +38,7 @@ const writeCounter = (count, callback) => {
 
 // Public API - Fix this function //////////////////////////////////////////////
 
-exports.getNextUniqueId = () => {
+exports.getNextUniqueId = (callback) => {
   readCounter(function(error, currentCount) {
     //argument[0] represents the first arg of the callback in readCounter
     //argument[1] represents the second arg of the callback in readCounter
@@ -47,6 +47,7 @@ exports.getNextUniqueId = () => {
     console.log('the counter is now', counter);
     writeCounter(counter, function(error, counterString) { //update the counter variable
       console.log('heres the counter', counterString);
+      callback(error, counterString);
     });
   });
   return zeroPaddedNumber(counter);
